@@ -40,9 +40,9 @@ yarn_install(
 # rules_proto_grpc
 http_archive(
     name = "rules_proto_grpc",
-    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/3.0.0.tar.gz"],
-    sha256 = "f9b50e672870fe5d60b8b2f3cd1731ceb89a9edef3513d81ba7f7c0d2991b51f",
-    strip_prefix = "rules_proto_grpc-3.0.0",
+    urls = ["https://github.com/rules-proto-grpc/rules_proto_grpc/archive/31d5a99f3a31579e2fc9b92adab9d8d0f9f19830.tar.gz"],
+    sha256 = "444409acf527947c0b27dc62adba570303049884cfc9d924d40e31e78552f9e8",
+    strip_prefix = "rules_proto_grpc-31d5a99f3a31579e2fc9b92adab9d8d0f9f19830",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains", "rules_proto_grpc_repos")
