@@ -1,0 +1,46 @@
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
+load("@npm//@bazel/typescript:index.bzl", "ts_project")
+load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_proto_grpc//js:defs.bzl", "js_grpc_node_library")
+
+
+exports_files(["tsconfig.json"], visibility = ["//visibility:public"])
+
+
+# This target produces compiled .js outputs from the provided .ts sources
+ts_project(
+  name = "server_ts",
+  srcs = [
+    "server.ts",
+  ],
+  deps = [
+    "@npm//grpc",
+    # The following dep causes a missing mandatory DeclarationInfo provider error unless commented out
+    ":service_js_grpc_lib",
+  ],
+  tsconfig = "//:tsconfig.json",
+)
+
+# A NodeJS-based server for running the gRPC service
+nodejs_binary(
+  name = "server",
+  data = [
+    ":server_ts",
+  ],
+  entry_point = ":server.js",
+)
+
+# This target produces a language-agnostic serialized FileDescriptorSet encoding the service's protobuf and gRPC-based schema
+proto_library(
+  name = "service_proto",
+  srcs = [
+    "service.proto",
+  ],
+)
+
+# This target generates the JavaScript code (and TypeScript definitions) for communicating with the service
+# TODO But it doesn't seem to provide a DeclarationInfo? Is that a bug?
+js_grpc_node_library(
+    name = "service_js_grpc_lib",
+    protos = [":service_proto"],
+)

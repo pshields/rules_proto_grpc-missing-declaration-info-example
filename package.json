@@ -1,0 +1,7 @@
+{
+  "devDependencies": {
+    "@bazel/typescript": "^3.2.0",
+    "grpc": "^1.24.5",
+    "typescript": "^3.9.7"
+  }
+}

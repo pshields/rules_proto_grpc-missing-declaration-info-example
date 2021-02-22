@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+
+service MyExampleService {
+
+  rpc GetPlaylist (RequestMessage) returns (ResponseMessage);
+
+}
+
+
+message RequestMessage {}
+
+
+message ResponseMessage {
+
+  // An arbitrary field so that this proto definition is non-empty
+  repeated ExampleItem items = 1;
+
+}
+
+
+message ExampleItem {
+
+  string label = 1;
+
+}
