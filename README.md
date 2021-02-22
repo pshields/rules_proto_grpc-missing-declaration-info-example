@@ -1,4 +1,4 @@
-# pshields-morning-content-selection-service
+# rules_proto_grpc-missing-declaration-info-example
 
 To reproduce the missing DeclarationInfo error, run:
 
